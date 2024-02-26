@@ -101,17 +101,13 @@ TodosRouter.post("/create", async (req, res) => {
   const { newTask, newIsDone, newDueDate, newUserId } = req.body;
 
   const newTodo = {
-    id: newId,
     task: newTask,
     isDone: newIsDone,
     dueDate: new Date(newDueDate),
     userId: newUserId,
   };
-
-  todos.push(newTodo);
   const todo = await TodoModel.create(newTodo);
 
-  res.status(StatusCodes.OK).json({ todo: newTodo });
   // todos.push(newTodo);
 
   res.status(StatusCodes.OK).json({ todo });
